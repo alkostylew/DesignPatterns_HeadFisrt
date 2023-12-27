@@ -1,0 +1,5 @@
+Adapter     - OK
+Builder     - OK
+Decorator   - OK
+Singleton   - OK
+Strategy    - OK

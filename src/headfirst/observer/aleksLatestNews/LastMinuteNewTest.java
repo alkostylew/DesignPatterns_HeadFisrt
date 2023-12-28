@@ -2,21 +2,18 @@ package headfirst.observer.aleksLatestNews;
 
 public class LastMinuteNewTest {
 
-    private static Observable observable = new Observable();
+    private static Observable observable = new ObservableImpl();
 
     public static void main(String[] args) {
-        observable.addAsObserver(new Observer1());
+        new Observer1(observable);
 
-        observable.sendLatestNew("Hoje vai nevar");
+        observable.notifyObservers("Hoje vai nevar");
 
-        Observer2 observer2 = new Observer2();
-        observable.addAsObserver(observer2);
-        observable.addAsObserver(new Observer3());
+        Observer2 obs2 = new Observer2(observable);
+        new Observer3(observable);
 
-        observable.sendLatestNew("Hoje fez 0 graus celsius.");
-
-        observable.removeFromObserver(observer2);
-
-        observable.sendLatestNew("Os professores voltaram a dar aulas.");
+        observable.notifyObservers("Hoje fez 0 graus celsius.");
+        observable.removeObserver(obs2);
+        observable.notifyObservers("Os professores voltaram a dar aulas.");
     }
 }

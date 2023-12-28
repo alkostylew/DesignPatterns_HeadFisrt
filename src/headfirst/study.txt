@@ -1,5 +1,7 @@
 Adapter     - OK
 Builder     - OK
 Decorator   - OK
+Observer    - OK
+Proxy       - OK
 Singleton   - OK
 Strategy    - OK

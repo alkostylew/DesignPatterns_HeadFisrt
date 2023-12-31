@@ -1,8 +1,9 @@
-Adapter     - OK
-Builder     - OK
-Decorator   - OK
-Observer    - OK
-Proxy       - OK
-Singleton   - OK
-State       - OK
-Strategy    - OK
+Adapter                 - OK
+Builder                 - OK
+Chain of Responsibility - OK
+Decorator               - OK
+Observer                - OK
+Proxy                   - OK
+Singleton               - OK
+State                   - OK
+Strategy                - OK

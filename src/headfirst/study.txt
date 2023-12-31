@@ -7,3 +7,4 @@ Proxy                   - OK
 Singleton               - OK
 State                   - OK
 Strategy                - OK
+Template Method         - OK

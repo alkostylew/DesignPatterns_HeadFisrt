@@ -8,3 +8,8 @@ Singleton               - OK
 State                   - OK
 Strategy                - OK
 Template Method         - OK
+
+
+SITE:
+https://www.digitalocean.com/community/tutorials?q=design+pattern&hits_per_page=12
+

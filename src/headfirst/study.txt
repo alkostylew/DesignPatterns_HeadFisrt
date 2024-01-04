@@ -1,3 +1,4 @@
+Abstract Factory        - OK
 Adapter                 - OK
 Builder                 - OK
 Chain of Responsibility - OK

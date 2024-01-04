@@ -1,0 +1,589 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:8.0pt;
+	margin-left:0cm;
+	line-height:107%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+.MsoChpDefault
+	{font-family:"Calibri",sans-serif;}
+.MsoPapDefault
+	{margin-bottom:8.0pt;
+	line-height:107%;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+
+</head>
+
+<body lang=FR-CA link=blue vlink="#954F72" style='word-wrap:break-word'>
+
+<div class=WordSection1>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><b><span
+style='font-size:18.0pt;font-family:"Arial",sans-serif;color:#4D5B7C'><a
+href="https://www.digitalocean.com/community/tutorials/factory-design-pattern-in-java#factory-design-pattern"><span
+lang=EN-US style='text-decoration:none'>Factory Design Pattern</span></a></span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><a
+href="https://journaldev.nyc3.cdn.digitaloceanspaces.com/2013/05/factory-design-pattern.jpg"><span
+style='font-size:12.0pt;font-family:"Arial",sans-serif;color:#0069FF;
+text-decoration:none'><img border=0 width=560 height=315 id="Image 2"
+src="Factory%20Design%20Pattern_fichiers/image001.jpg"
+alt="factory design pattern, factory design pattern in java, factory pattern, factory method pattern, factory pattern example"></span></a><span
+lang=EN-US style='font-size:12.0pt;font-family:"Arial",sans-serif;color:#4D5B7C'>The
+factory design pattern is used when we have a superclass with multiple
+sub-classes and based on input, we need to return one of the sub-class. This
+pattern takes out the responsibility of the instantiation of a class from the
+client program to the factory class. Let’s first learn how to implement a
+factory design pattern in java and then we will look into factory pattern
+advantages. We will see some of the factory design pattern usage in JDK. Note
+that this pattern is also known as&nbsp;<b>Factory Method Design Pattern</b>.</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><b><span
+style='font-size:13.5pt;font-family:"Arial",sans-serif;color:#4D5B7C'><a
+href="https://www.digitalocean.com/community/tutorials/factory-design-pattern-in-java#factory-design-pattern-super-class"><span
+lang=EN-US style='text-decoration:none'>Factory Design Pattern Super Class</span></a></span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
+lang=EN-US style='font-size:12.0pt;font-family:"Arial",sans-serif;color:#4D5B7C'>Super
+class in factory design pattern can be an interface,&nbsp;</span><b><span
+style='font-size:12.0pt;font-family:"Arial",sans-serif;color:#4D5B7C'><a
+href="https://www.digitalocean.com/community/tutorials/abstract-class-in-java"
+title="Abstract Class in Java with Example"><span lang=EN-US style='color:#0069FF;
+text-decoration:none'>abstract class</span></a></span></b><span lang=EN-US
+style='font-size:12.0pt;font-family:"Arial",sans-serif;color:#4D5B7C'>&nbsp;or
+a normal java class. For our factory design pattern example, we have abstract
+super class with&nbsp;</span><span style='font-size:12.0pt;font-family:"Arial",sans-serif;
+color:#4D5B7C'><a
+href="https://www.digitalocean.com/community/tutorials/java-override-method-overriding"
+title="Overriding Methods in Java? – Always use @Override annotation"><span
+lang=EN-US style='color:#0069FF;text-decoration:none'>overridden</span></a></span><span
+lang=EN-US style='font-size:12.0pt;font-family:"Arial",sans-serif;color:#4D5B7C'>&nbsp;</span><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#24335A;
+background:#E3E8F4'>toString()</span><span lang=EN-US style='font-size:12.0pt;
+font-family:"Arial",sans-serif;color:#4D5B7C'>&nbsp;method for testing purpose.</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>package
+com.journaldev.design.model;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>public
+abstract class Computer {</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>        </span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>        public
+abstract String getRAM();</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>        public
+abstract String getHDD();</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>        public
+abstract String getCPU();</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>        </span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>        @Override</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>        public
+String toString(){</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>               return
+&quot;RAM= &quot;+this.getRAM()+&quot;, HDD=&quot;+this.getHDD()+&quot;,
+CPU=&quot;+this.getCPU();</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>        }</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>}</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><b><span
+style='font-size:13.5pt;font-family:"Arial",sans-serif;color:#4D5B7C'><a
+href="https://www.digitalocean.com/community/tutorials/factory-design-pattern-in-java#factory-design-pattern-sub-classes"><span
+lang=EN-US style='text-decoration:none'>Factory Design Pattern Sub Classes</span></a></span></b></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+12.0pt;margin-left:0cm;line-height:normal'><span lang=EN-US style='font-size:
+12.0pt;font-family:"Arial",sans-serif;color:#4D5B7C'>Let’s say we have two
+sub-classes PC and Server with below implementation.</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>package
+com.journaldev.design.model;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>public
+class PC extends Computer {</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>        private
+String ram;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>        private
+String hdd;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>        private
+String cpu;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>        </span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>        public
+PC(String ram, String hdd, String cpu){</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>               this.ram=ram;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>               this.hdd=hdd;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>               this.cpu=cpu;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>        }</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>        @Override</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>        public
+String getRAM() {</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>               return
+this.ram;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>        }</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>        @Override</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>        public
+String getHDD() {</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>               return
+this.hdd;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>        }</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>        @Override</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>        public
+String getCPU() {</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>                return
+this.cpu;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>        }</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>}</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
+lang=EN-US style='font-size:12.0pt;font-family:"Arial",sans-serif;color:#4D5B7C'>Notice
+that both the classes are extending&nbsp;</span><span lang=EN-US
+style='font-size:10.5pt;font-family:"Courier New";color:#24335A;background:
+#E3E8F4'>Computer</span><span lang=EN-US style='font-size:12.0pt;font-family:
+"Arial",sans-serif;color:#4D5B7C'>&nbsp;super class.</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>package
+com.journaldev.design.model;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>public
+class Server extends Computer {</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>        private
+String ram;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>        private
+String hdd;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>        private
+String cpu;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>        </span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>        public
+Server(String ram, String hdd, String cpu){</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>               this.ram=ram;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>               this.hdd=hdd;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>               this.cpu=cpu;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>        }</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>        @Override</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>        public
+String getRAM() {</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>               return
+this.ram;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>        }</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>        @Override</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>        public
+String getHDD() {</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>               return
+this.hdd;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>        }</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>        @Override</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>        public
+String getCPU() {</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>               return
+this.cpu;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>        }</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>}</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><b><span
+style='font-size:13.5pt;font-family:"Arial",sans-serif;color:#4D5B7C'><a
+href="https://www.digitalocean.com/community/tutorials/factory-design-pattern-in-java#factory-class"><span
+lang=EN-US style='text-decoration:none'>Factory Class</span></a></span></b></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+12.0pt;margin-left:0cm;line-height:normal'><span lang=EN-US style='font-size:
+12.0pt;font-family:"Arial",sans-serif;color:#4D5B7C'>Now that we have super
+classes and sub-classes ready, we can write our factory class. Here is the
+basic implementation.</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>package
+com.journaldev.design.factory;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>import
+com.journaldev.design.model.Computer;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>import
+com.journaldev.design.model.PC;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>import
+com.journaldev.design.model.Server;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>public
+class ComputerFactory {</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>        public
+static Computer getComputer(String type, String ram, String hdd, String cpu){</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>               if(&quot;PC&quot;.equalsIgnoreCase(type))
+return new PC(ram, hdd, cpu);</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>               else
+if(&quot;Server&quot;.equalsIgnoreCase(type)) return new Server(ram, hdd, cpu);</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>               </span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>               return
+null;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>        }</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>}</span></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+12.0pt;margin-left:0cm;line-height:normal'><span lang=EN-US style='font-size:
+12.0pt;font-family:"Arial",sans-serif;color:#4D5B7C'>Some important points
+about Factory Design Pattern method are;</span></p>
+
+<ol style='margin-top:0cm' start=1 type=1>
+ <li class=MsoNormal style='color:#4D5B7C;margin-bottom:0cm;line-height:normal'><span
+     lang=EN-US style='font-size:12.0pt;font-family:"Arial",sans-serif'>We can
+     keep Factory class Singleton or we can keep the method that returns the
+     subclass as&nbsp;</span><span style='font-size:12.0pt;font-family:"Arial",sans-serif'><a
+     href="https://www.digitalocean.com/community/tutorials/static-keyword-in-java"
+     title="What is static in Java? Java Static methods, variables, static block and class"><span
+     lang=EN-US style='color:#0069FF;text-decoration:none'>static</span></a></span><span
+     lang=EN-US style='font-size:12.0pt;font-family:"Arial",sans-serif'>.</span></li>
+ <li class=MsoNormal style='color:#4D5B7C;margin-bottom:0cm;line-height:normal'><span
+     lang=EN-US style='font-size:12.0pt;font-family:"Arial",sans-serif'>Notice
+     that based on the input parameter, different subclass is created and
+     returned.&nbsp;</span><span lang=EN-US style='font-size:10.5pt;font-family:
+     "Courier New";color:#24335A;background:#E3E8F4'>getComputer</span><span
+     lang=EN-US style='font-size:12.0pt;font-family:"Arial",sans-serif'>&nbsp;is
+     the factory method.</span></li>
+</ol>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><a
+href="https://journaldev.nyc3.cdn.digitaloceanspaces.com/2013/05/factory-pattern-java.png"><span
+style='font-size:12.0pt;font-family:"Arial",sans-serif;color:#0069FF;
+text-decoration:none'><img border=0 width=450 height=327 id="Image 1"
+src="Factory%20Design%20Pattern_fichiers/image002.png"
+alt="factory pattern java, factory pattern, factory design pattern, factory pattern class diagram"></span></a><span
+lang=EN-US style='font-size:12.0pt;font-family:"Arial",sans-serif;color:#4D5B7C'>Here
+is a simple test client program that uses above factory design pattern implementation.</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>package
+com.journaldev.design.test;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>import
+com.journaldev.design.factory.ComputerFactory;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>import
+com.journaldev.design.model.Computer;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>public
+class TestFactory {</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>        public
+static void main(String[] args) {</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>               Computer
+pc = ComputerFactory.getComputer(&quot;pc&quot;,&quot;2 GB&quot;,&quot;500
+GB&quot;,&quot;2.4 GHz&quot;);</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>               Computer
+server = ComputerFactory.getComputer(&quot;server&quot;,&quot;16
+GB&quot;,&quot;1 TB&quot;,&quot;2.9 GHz&quot;);</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>               System.out.println(&quot;Factory
+PC Config::&quot;+pc);</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>               System.out.println(&quot;Factory
+Server Config::&quot;+server);</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>        }</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>}</span></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+12.0pt;margin-left:0cm;line-height:normal'><span lang=EN-US style='font-size:
+12.0pt;font-family:"Arial",sans-serif;color:#4D5B7C'>Output of above program
+is:</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>Factory
+PC Config::RAM= 2 GB, HDD=500 GB, CPU=2.4 GHz</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:16.5pt;background:#11192E'><span
+lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#F7F8FB'>Factory
+Server Config::RAM= 16 GB, HDD=1 TB, CPU=2.9 GHz</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><b><span
+style='font-size:13.5pt;font-family:"Arial",sans-serif;color:#4D5B7C'><a
+href="https://www.digitalocean.com/community/tutorials/factory-design-pattern-in-java#factory-design-pattern-advantages"><span
+style='text-decoration:none'>Factory Design Pattern Advantages</span></a></span></b></p>
+
+<ol style='margin-top:0cm' start=1 type=1>
+ <li class=MsoNormal style='color:#4D5B7C;margin-bottom:0cm;line-height:normal'><span
+     lang=EN-US style='font-size:12.0pt;font-family:"Arial",sans-serif'>Factory
+     design pattern provides approach to code for interface rather than
+     implementation.</span></li>
+ <li class=MsoNormal style='color:#4D5B7C;margin-bottom:0cm;line-height:normal'><span
+     lang=EN-US style='font-size:12.0pt;font-family:"Arial",sans-serif'>Factory
+     pattern removes the instantiation of actual implementation classes from
+     client code. Factory pattern makes our code more robust, less coupled and
+     easy to extend. For example, we can easily change PC class implementation
+     because client program is unaware of this.</span></li>
+ <li class=MsoNormal style='color:#4D5B7C;margin-bottom:0cm;line-height:normal'><span
+     lang=EN-US style='font-size:12.0pt;font-family:"Arial",sans-serif'>Factory
+     pattern provides abstraction between implementation and client classes
+     through inheritance.</span></li>
+</ol>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><b><span
+style='font-size:13.5pt;font-family:"Arial",sans-serif;color:#4D5B7C'><a
+href="https://www.digitalocean.com/community/tutorials/factory-design-pattern-in-java#factory-design-pattern-examples-in-jdk"><span
+lang=EN-US style='text-decoration:none'>Factory Design Pattern Examples in JDK</span></a></span></b></p>
+
+<ol style='margin-top:0cm' start=1 type=1>
+ <li class=MsoNormal style='color:#4D5B7C;margin-bottom:0cm;line-height:normal'><span
+     lang=EN-US style='font-size:12.0pt;font-family:"Arial",sans-serif'>java.util.Calendar,
+     ResourceBundle and NumberFormat&nbsp;</span><span lang=EN-US
+     style='font-size:10.5pt;font-family:"Courier New";color:#24335A;
+     background:#E3E8F4'>getInstance()</span><span lang=EN-US style='font-size:
+     12.0pt;font-family:"Arial",sans-serif'>&nbsp;methods uses Factory pattern.</span></li>
+ <li class=MsoNormal style='color:#4D5B7C;margin-bottom:0cm;line-height:normal'><span
+     lang=EN-US style='font-size:10.5pt;font-family:"Courier New";color:#24335A;
+     background:#E3E8F4'>valueOf()</span><span lang=EN-US style='font-size:
+     12.0pt;font-family:"Arial",sans-serif'>&nbsp;method in wrapper classes
+     like Boolean, Integer etc.</span></li>
+</ol>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><b><span
+style='font-size:13.5pt;font-family:"Arial",sans-serif;color:#4D5B7C'><a
+href="https://www.digitalocean.com/community/tutorials/factory-design-pattern-in-java#factory-design-pattern-youtube-video-tutorial"><span
+lang=EN-US style='text-decoration:none'>Factory Design Pattern YouTube Video
+Tutorial</span></a></span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
+lang=EN-US style='font-size:12.0pt;font-family:"Arial",sans-serif;color:#4D5B7C'>I
+recently uploaded a video on YouTube for Factory Design pattern, please check
+it out. Please like and share the video and subscribe to my YouTube
+channel.&nbsp;</span><span style='font-size:12.0pt;font-family:"Arial",sans-serif;
+color:#4D5B7C'><a href="https://www.youtube.com/watch?v=J1QU%5C_R4MQQc"><span
+lang=EN-US style='color:#0069FF;text-decoration:none'>https://www.youtube.com/watch?v=J1QU\_R4MQQc</span></a></span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
+lang=EN-US style='font-size:12.0pt;font-family:"Arial",sans-serif;color:#4D5B7C'>You
+can download the example code from my&nbsp;</span><span style='font-size:12.0pt;
+font-family:"Arial",sans-serif;color:#4D5B7C'><a
+href="https://github.com/journaldev/journaldev/tree/master/java-design-patterns/Factory-Design-Pattern"><span
+lang=EN-US style='color:#0069FF;text-decoration:none'>GitHub Project</span></a></span><span
+lang=EN-US style='font-size:12.0pt;font-family:"Arial",sans-serif;color:#4D5B7C'>.</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+</div>
+
+</body>
+
+</html>

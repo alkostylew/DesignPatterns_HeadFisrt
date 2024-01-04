@@ -5,6 +5,7 @@ Decorator               - OK
 Facade                  - OK
 Factory Method          - OK
 Observer                - OK
+Prototype               - OK
 Proxy                   - OK
 Singleton               - OK
 State                   - OK

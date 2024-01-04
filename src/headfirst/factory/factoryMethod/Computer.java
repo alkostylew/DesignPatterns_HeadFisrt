@@ -1,4 +1,4 @@
-package headfirst.factoryMethod;
+package headfirst.factory.factoryMethod;
 
 public abstract class Computer {
 

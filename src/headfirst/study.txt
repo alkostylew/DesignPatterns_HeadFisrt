@@ -2,6 +2,8 @@ Adapter                 - OK
 Builder                 - OK
 Chain of Responsibility - OK
 Decorator               - OK
+Facade                  - OK
+Factory Method          - OK
 Observer                - OK
 Proxy                   - OK
 Singleton               - OK

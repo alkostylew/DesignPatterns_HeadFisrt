@@ -13,6 +13,17 @@ State                   - OK
 Strategy                - OK
 Template Method         - OK
 
+------------
+
+Composite
+Flyweight
+Bridge
+Mediator
+Command
+Visitor
+Interpreter
+Iterator
+Memento
 
 SITE:
 https://www.digitalocean.com/community/tutorials?q=design+pattern&hits_per_page=12

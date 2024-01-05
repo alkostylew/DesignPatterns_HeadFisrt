@@ -5,6 +5,7 @@ Chain of Responsibility - OK
 Decorator               - OK
 Facade                  - OK
 Factory Method          - OK
+Iterator                - OK
 Observer                - OK
 Prototype               - OK
 Proxy                   - OK
@@ -22,7 +23,6 @@ Mediator
 Command
 Visitor
 Interpreter
-Iterator
 Memento
 
 SITE:
